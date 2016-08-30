@@ -35,7 +35,7 @@ module CanCan
 
           rules.inject(@model_class.all) do |records, rule|
             if process_can_rules && rule.base_behavior
-              records.or simplify_relations(@model_class, rule.conditions)
+              records.and simplify_relations(@model_class, rule.conditions)
             elsif !rule.base_behavior
               records.excludes simplify_relations(@model_class, rule.conditions)
             else
